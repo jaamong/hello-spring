@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+//@Service
 // Service는 비지니스 용어에 맞게
 // 테스트 케이스 단축키 : ctrl + shift + T
 public class MemberService {
