@@ -3,19 +3,21 @@ package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-
+@Service
 // Service는 비지니스 용어에 맞게
 // 테스트 케이스 단축키 : ctrl + shift + T
 public class MemberService {
 
     private final MemberRepository memberRepository; //= new MemoryMemberRepository();
 
-    // Alt + Insert : 생성자 단축키
-    public MemberService(MemberRepository memberRepository) {
+    @Autowired
+    public MemberService(MemberRepository memberRepository) { // Alt + Insert : 생성자 단축키
         //MemberService 입장에서 외부에서 객체를 넣어줌 : Dependency Injection(DI)
         this.memberRepository = memberRepository;
     }
