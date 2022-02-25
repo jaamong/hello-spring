@@ -34,7 +34,7 @@ public class MemoryMemberRepository implements MemberRepository { // Alt + Enter
         // 람다 사용됨 -> filter : 파라미터로 넘어온 name이 같은지 확인
         // 같은 경우에만 filtering
         // 그 중에서 그냥 찾으면(findAny() : 하나라도 찾는 것) 반환 (Optional)
-        // 끝까지 찾았는데 null 반환 (Optional)
+        // 끝까지 찾았는데 없으면 null 반환 (Optional)
 
         return store.values().stream()
                 .filter(member -> member.getName().equals(name))
