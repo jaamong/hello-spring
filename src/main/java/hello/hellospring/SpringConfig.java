@@ -1,13 +1,29 @@
 package hello.hellospring;
 
+import hello.hellospring.repository.JdbcMemberRepository;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import hello.hellospring.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.sql.DataSource;
+
 @Configuration
 public class SpringConfig {
+
+    /*
+    데이터베이스 커넥션을 획득할 때 사용하는 객체
+    스프링 부트는 데이터베이스 커넥션 정보를 바탕으로 DataSource를 생성하고 스프링 빈으로 만들어둔다.
+    그래서 DI를 받을 수 있다.
+     */
+    DataSource dataSource;
+
+    @Autowired
+    public SpringConfig(DataSource dataSource) { //DI
+        this.dataSource = dataSource;
+    }
 
     @Bean // 스프링 빈에 등록하라는 의미
     public MemberService memberService() {
@@ -16,7 +32,8 @@ public class SpringConfig {
 
     @Bean
     public MemberRepository memberRepository() {
-        return new MemoryMemberRepository(); //구현체 (인터페이스는 new 안됨)
+//        return new MemoryMemberRepository();
+        return new JdbcMemberRepository(dataSource);
     }
 
 }
