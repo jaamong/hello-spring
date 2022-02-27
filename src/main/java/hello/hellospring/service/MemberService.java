@@ -2,16 +2,17 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
-import hello.hellospring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
-//@Service
-// Service는 비지니스 용어에 맞게
-// 테스트 케이스 단축키 : ctrl + shift + T
+/*
+    JPA를 쓰려면 Transaction이 필요함 -> Service에 추가(회원가입에만 필요해서 거기에 해둬도 되는데.. 일단 여기에)
+    JPA는 Join 들어올 때 모든 데이터 변경이 Transaction 안에서 실행되어야 함.
+ */
+@Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository; //= new MemoryMemberRepository();

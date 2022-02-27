@@ -28,6 +28,7 @@ public class MemberServiceIntegrationTest {
     @Autowired MemberRepository memberRepository;
 
     @Test
+//  @Commit
     void join() {
         // given : 뭔가 주어졌는데
         Member member = new Member();
