@@ -19,6 +19,9 @@ public class MemberController {
     @Autowired // -> MemberController가 생성될 때 스프링 빈(Bean)에 등록되어 있는 MemberService 객체(@Service)를 가져다가 넣어줌(DI : Dependency Injection)
     public MemberController(MemberService memberService){
         this.memberService = memberService;
+
+        // 가짜 memberService 찍어보기 (프록시)
+        System.out.println("memberService = " + memberService.getClass());
     }
 
     @GetMapping("/members/new")

@@ -29,19 +29,9 @@ public class MemberService {
      * Validation : 같은 이름이 있는 중복 회원 X
      */
     public Long join(Member member) {
-
-        //메소드 호출 시간 측정
-        long start = System.currentTimeMillis();
-
-        try {
-            validatedDuplicationMember(member);
-            memberRepository.save(member);
-            return member.getId();
-        } finally {
-            long finish = System.currentTimeMillis();
-            long timeMs = finish - start;
-            System.out.println("join = " + timeMs + "ms");
-        }
+        validatedDuplicationMember(member);
+        memberRepository.save(member);
+        return member.getId();
     }
 
     //Extract Method : ctrl + alt + m
